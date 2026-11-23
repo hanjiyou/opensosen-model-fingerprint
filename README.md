@@ -4,7 +4,9 @@ OpenSosen 模型指纹是一款 Windows x64 桌面应用。它通过本机已登
 
 ## 快速使用
 
-双击便携包内的 `OpenSosenModelFingerprint.exe`。运行时需要同一目录里的 Electron 文件，以及本机可运行的官方 Windows x64 Codex CLI。原生 `codex.exe` 和官方 npm `codex.cmd` 所对应的原生程序都支持。使用 npm 安装时，可以从 `%APPDATA%\npm` 查找。
+从 GitHub Releases 下载 Windows x64 便携版 `.exe`，双击即可打开。首次打开时，请稍候片刻，让程序将内置运行库展开到临时目录。关闭应用后，启动器会清理此次展开的文件。[下载最新版本](https://github.com/opensosen-ai/opensosen-model-fingerprint/releases/latest)
+
+检测前请先在本机安装并登录官方 Windows x64 Codex CLI。应用支持原生 `codex.exe`，也能通过官方 npm 安装的 `codex.cmd` 定位其原生程序。
 
 界面显示 Codex 登录方式、提供方、参考库快照，及三次采样的实际数字计数。选择列表里的文本模型并点击 **开始检测**。可随时取消。完成后可展开每次挑战和原始回复。点击 **导出 JSON** 会把证据保存到当前用户的 `文档\OpenSosen Model Fingerprint\证据`，窗口会显示完整路径。
 
@@ -35,7 +37,7 @@ npm.cmd test
 npm.cmd run build
 ```
 
-默认便携包目录为 `out/OpenSosenModelFingerprint-0.1.1-win-x64/`。要指定输出位置，可使用 `npm.cmd run build -- 'D:\OpenSosenModelFingerprint-Portable'` 并选择一个尚未创建的目录。分发时请保留整个输出目录，其中包含应用、Electron 运行时和第三方许可声明。
+默认在 `out/` 中生成带版本号的应用目录。可直接运行目录内的 `OpenSosenModelFingerprint.exe`。要生成发布用的单文件 EXE，请先将 NSIS 3.13 的 `makensis.exe` 加入 PATH，再运行 `npm.cmd run build:portable`。生成的 `out/OpenSosenModelFingerprint-<版本>-win-x64.exe` 包含完整应用、Electron 运行时和第三方许可。
 
 ## 致谢
 

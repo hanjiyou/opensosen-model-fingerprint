@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { delimiter, isAbsolute, join } from 'node:path';
 import { createInterface } from 'node:readline';
 import { promisify } from 'node:util';
+import manifest from '../package.json' with { type: 'json' };
 
 export type Fields = Record<string, unknown>;
 
@@ -170,7 +171,7 @@ export class AppServer {
 
   async initialize(signal: AbortSignal) {
     const hello = await this.request('initialize', {
-      clientInfo: { name: 'opensosen_model_fingerprint', title: 'OpenSosen Model Fingerprint', version: '0.1.1' },
+      clientInfo: { name: 'opensosen_model_fingerprint', title: manifest.productName, version: manifest.version },
     }, signal);
     this.#send({ method: 'initialized' });
     return string(hello.userAgent)?.match(/\b\d+\.\d+\.\d+(?:-[\w.-]+)?\b/)?.[0] ?? null;
